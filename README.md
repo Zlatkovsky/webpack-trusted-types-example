@@ -1,0 +1,1 @@
+# webpack-trusted-types-example
