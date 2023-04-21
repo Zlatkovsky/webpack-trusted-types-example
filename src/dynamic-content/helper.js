@@ -1,7 +1,10 @@
 export function addColoredSquareToDiv(parentElement) {
   const child = document.createElement("div");
+  child.textContent = "Dynamic code loaded!";
   child.style.width = "300px";
   child.style.height = "300px";
+  child.style.lineHeight = "300px";
+  child.style.textAlign = "center";
   child.style.background = getRandomColor();
 
   parentElement.appendChild(child);

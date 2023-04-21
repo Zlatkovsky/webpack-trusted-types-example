@@ -1,0 +1,4 @@
+# Ensure cr/lf settings are consistent
+*	text=auto
+# patch-package tool breaks on CRLF
+patches/*.patch text eol=lf

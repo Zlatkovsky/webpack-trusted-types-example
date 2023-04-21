@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>
+      This page has <code>require-trusted-types-for 'script'</code> enabled via
+      CSP, but in <b>Report Only</b> mode.
+    </h1>
+    <h2>
+      Importantly, `trusted-types` itself is enabled in the CSP, and does NOT
+      have the name of the policy for the dynamically-loaded content (e.g.,
+      imagine it's an old/cached copy of the application, that isn't aware of
+      the new policy).
+    </h2>
+
+    <div style="margin-bottom: 10px">
+      <div>
+        This first button will work. There will be a warning outputted to the
+        console by the browser (<code
+          >[Report Only] This document requires 'TrustedScriptURL'
+          assignment.</code
+        >), but in other respects the code will run fine:
+      </div>
+      <button id="load-code-with-no-policy">
+        Load dynamic code, no policy defined in the webpack config
+      </button>
+    </div>
+    <div style="margin-bottom: 10px">
+      <div>
+        This second button FAILS to work, because trusted-types is now defined
+        in the Webpack config for the dynamic code, and yet isn't in the
+        <code>trusted-types</code> allow-list of the CSP.
+      </div>
+      <button id="load-code-with-policy-name-only">
+        Load dynamic code, with only the policy defined in config (and the
+        default behavior of stopping on policy-creation failure)
+      </button>
+    </div>
+    <div style="margin-bottom: 10px">
+      <div>
+        Finally, this last button has the new
+        <code>onPolicyCreationFailure: "continue"</code>
+        option in the dynamic code's webpack config, and so it will output a
+        couple of warnings to the console and then work just like the first
+        button:
+      </div>
+      <button id="load-code-with-continue-on-policy-creation-failure">
+        Load dynamic code, with a webpack config that allows continuation on
+        policy-creation failure
+      </button>
+
+      <div>See this image for what the warnings look like:</div>
+      <div><img src="./button3-failure.png" /></div>
+    </div>
+
+    <hr />
+    <div id="result"></div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
