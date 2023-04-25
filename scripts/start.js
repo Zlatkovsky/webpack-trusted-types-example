@@ -13,8 +13,8 @@ console.log(
   ].join("\n")
 );
 
-const rootDirPath = path.normalize(path.join(__dirname, "../dist"));
-const command = `"C:\\Program Files\\IIS Express\\iisexpress.exe" /path:"${rootDirPath}"`;
+const distPath = path.normalize(path.join(__dirname, "../dist"));
+const command = `"C:\\Program Files\\IIS Express\\iisexpress.exe" /path:"${distPath}"`;
 
 console.log([
     "Starting IIS express using command:",

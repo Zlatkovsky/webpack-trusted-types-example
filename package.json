@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "postinstall": "node scripts/postinstall.js",
-    "bundle": "webpack",
+    "bundle": "node scripts/bundle-host-app.js && webpack",
     "start": "node scripts/start.js"
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/fs-extra": "^11.0.1",
+    "fs-extra": "^11.1.1",
     "marked": "^4.3.0",
     "patch-package": "6.2.2",
     "webpack": "5.80.0",

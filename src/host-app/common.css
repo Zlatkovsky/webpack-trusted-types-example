@@ -1,0 +1,18 @@
+html,
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333;
+  background-color: #fbfbfb;
+  height: 100%;
+}
+
+code {
+  font-size: 1.2em;
+  color: brown;
+}
+
+h2 {
+  margin-top: 2em;
+}
