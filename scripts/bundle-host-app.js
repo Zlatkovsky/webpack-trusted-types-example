@@ -42,4 +42,6 @@ fs.writeFileSync(path.join(distPath, "index.html"), html);
 // Finally: copy the rest of the host-app folder
 ////////////////////////////////////////////////////////////
 
-fs.copySync(path.join(rootDirPath, "src/host-app"), distPath);
+fs.copySync(path.join(rootDirPath, "src/host-app"), distPath, {
+  filter: (src) => !src.endsWith(".md"),
+});

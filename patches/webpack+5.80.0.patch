@@ -52,22 +52,6 @@ index 9f719e3..7b7a7cc 100644
  								]),
  								"}"
  						  ]
-diff --git a/node_modules/webpack/lib/runtime/LoadScriptRuntimeModule.js b/node_modules/webpack/lib/runtime/LoadScriptRuntimeModule.js
-index 4781bab..ac487bc 100644
---- a/node_modules/webpack/lib/runtime/LoadScriptRuntimeModule.js
-+++ b/node_modules/webpack/lib/runtime/LoadScriptRuntimeModule.js
-@@ -81,6 +81,11 @@ class LoadScriptRuntimeModule extends HelperRuntimeModule {
- 			uniqueName
- 				? 'script.setAttribute("data-webpack", dataWebpackPrefix + key);'
- 				: "",
-+			"if (window.__webpack_hack_fetchpriority__) {",
-+			Template.indent(
-+				`script.setAttribute("fetchpriority", window.__webpack_hack_fetchpriority__);`
-+			),
-+			"}",
- 			`script.src = ${
- 				this._withCreateScriptUrl
- 					? `${RuntimeGlobals.createScriptUrl}(url)`
 diff --git a/node_modules/webpack/schemas/WebpackOptions.check.js b/node_modules/webpack/schemas/WebpackOptions.check.js
 index 8fbef40..5afd85a 100644
 --- a/node_modules/webpack/schemas/WebpackOptions.check.js
