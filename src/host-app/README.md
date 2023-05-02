@@ -1,0 +1,3 @@
+## About "host-app" folder
+
+This folder represents the host app. A [`bundle-host-app.js`](../../scripts/bundle-host-app.js) script ultimately pieces the app together, creating two folders with a simple HTML page in each of them. Each folder is served with different CSP rules, courtesy of their respective `Web.config` files. The `report-only-csp` folder is served with a more lenient set of CSP rules, while the `strict-csp` folder serves the page with both `require-trusted-types-for 'script'` AND a `trusted-types` attribute that does NOT include the dynamic code's policy name. See [the root README](../../README.md) for more details on why this matters.

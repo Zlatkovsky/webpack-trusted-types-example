@@ -23,7 +23,7 @@ module.exports = [
     ...commonOptions,
     output: {
       trustedTypes: {
-        policyName: "DynamicCode",
+        policyName: "DynamicWebpackCode",
       },
       chunkLoadingGlobal: "webpackChunkTrustedTypesPolicy",
       path: path.resolve(__dirname, "dist/dynamic-content/trusted-types-policy-regular"),
@@ -35,7 +35,7 @@ module.exports = [
     ...commonOptions,
     output: {
       trustedTypes: {
-        policyName: "DynamicCode",
+        policyName: "DynamicWebpackCode",
         onPolicyCreationFailure: "continue"
       },
       chunkLoadingGlobal: "webpackChunkTrustedTypesPolicyContinueOnError",

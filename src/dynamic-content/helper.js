@@ -1,13 +1,18 @@
 export function addColoredSquareToDiv(parentElement) {
-  const child = document.createElement("div");
-  child.textContent = "Dynamic code loaded!";
-  child.style.width = "300px";
-  child.style.height = "300px";
-  child.style.lineHeight = "300px";
-  child.style.textAlign = "center";
-  child.style.background = getRandomColor();
+  const mainDiv = document.createElement("div");
+  mainDiv.style.width = "300px";
+  mainDiv.style.height = "300px";
+  mainDiv.style.lineHeight = "300px";
+  mainDiv.style.textAlign = "center";
+  mainDiv.style.background = getRandomColor();
 
-  parentElement.appendChild(child);
+  const spanWithin = document.createElement("span");
+  spanWithin.textContent = "Dynamic code loaded!";
+  spanWithin.style.background = "#85e485";
+  spanWithin.style.padding = "0.5em 1em";
+  mainDiv.appendChild(spanWithin);
+
+  parentElement.appendChild(mainDiv);
 }
 
 // Taken from https://stackoverflow.com/a/1484514

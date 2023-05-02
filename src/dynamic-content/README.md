@@ -1,4 +1,4 @@
-## About "dynamic-content"
+## About "dynamic-content" folder
 
 This folder represents dynamic content that's being webpacked. It could have been something that's in a separate project and deployed to a separate CDN, though for a demo it's easier to just have it in the same project.
 

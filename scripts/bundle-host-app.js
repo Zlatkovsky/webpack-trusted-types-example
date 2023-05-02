@@ -11,7 +11,7 @@ const distPath = path.join(rootDirPath, "dist");
 // First part: empty out the "dist" directory if it exists
 ////////////////////////////////////////////////////////////
 if (fs.existsSync(distPath)) {
-  fs.rmdirSync(distPath, { recursive: true });
+  fs.rmSync(distPath, { recursive: true });
 }
 fs.mkdirSync(distPath);
 
@@ -24,7 +24,6 @@ const readmeContentsMd = fs
   .toString();
 /** @type {string} */
 const readmeContentsHtml = marked.parse(readmeContentsMd);
-
 const html = `
 <!DOCTYPE html>
 <html>
@@ -40,9 +39,7 @@ ${readmeContentsHtml}
 fs.writeFileSync(path.join(distPath, "index.html"), html);
 
 ////////////////////////////////////////////////////////////
-// Second part: copy the rest of the host-app folder
+// Finally: copy the rest of the host-app folder
 ////////////////////////////////////////////////////////////
 
-fs.copySync(path.join(rootDirPath, "src/host-app"), distPath, {
-  overwrite: true | false,
-});
+fs.copySync(path.join(rootDirPath, "src/host-app"), distPath);

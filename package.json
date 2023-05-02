@@ -4,7 +4,7 @@
   "scripts": {
     "postinstall": "node scripts/postinstall.js",
     "bundle": "node scripts/bundle-host-app.js && webpack",
-    "start": "node scripts/start.js"
+    "start": "yarn bundle && node scripts/replace-links-with-local-links.js && node scripts/start.js"
   },
   "license": "MIT",
   "devDependencies": {

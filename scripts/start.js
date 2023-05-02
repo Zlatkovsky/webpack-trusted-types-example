@@ -8,7 +8,7 @@ console.log(
     "If you haven't already, please install IIS Express from",
     "    https://www.microsoft.com/en-us/download/details.aspx?id=48264",
     "",
-    "Please also run `yarn install` and `yarn bundle` first.",
+    "Please also run `yarn install` first.",
     "",
   ].join("\n")
 );

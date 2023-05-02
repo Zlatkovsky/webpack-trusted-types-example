@@ -6,14 +6,15 @@
   </head>
   <body>
     <h1>
-      This page has <code>require-trusted-types-for 'script'</code> enabled via
-      CSP, but in <b>Report Only</b> mode.
+      This page has <code>require-trusted-types-for 'script'</code> required in
+      the CSP rules.
     </h1>
     <h2>
-      Importantly, `trusted-types` itself is enabled in the CSP, and does NOT
-      have the name of the policy for the dynamically-loaded content (e.g.,
-      imagine it's an old/cached copy of the application, that isn't aware of
-      the new policy).
+      The combination of that attribute being in the CSP rules, along with the
+      <code>trusted-types</code>
+      attribute also being present and NOT specifying the name of the
+      dynamically-loaded content policy, means that the browser will fail to
+      load the dynamic code in all three cases.)
     </h2>
 
     <div style="margin-bottom: 10px">
@@ -21,12 +22,12 @@
         Case 1: Load dynamic code, no policy defined in the webpack config
       </h3>
       <div>
-        This first button will work. There will be a warning outputted to the
-        console by the browser (<code
-          >[Report Only] This document requires 'TrustedScriptURL'
-          assignment.</code
-        >), but in other respects the code will run fine:
+        This button will fail to work, failing with the following error:
       </div>
+      <code
+        >Failed to set the 'src' property on 'HTMLScriptElement': This document
+        requires 'TrustedScriptURL' assignment.</code
+      >
       <button id="load-code-with-no-policy">
         Load dynamic code, no policy defined in the webpack config
       </button>
@@ -37,10 +38,19 @@
         the default behavior of stopping on policy-creation failure)
       </h3>
       <div>
-        This second button FAILS to work, because trusted-types is now defined
-        in the Webpack config for the dynamic code, and yet isn't in the
+        This second button also fails to work, this time because trusted-types
+        is now defined in the Webpack config for the dynamic code, and yet isn't
+        in the
         <code>trusted-types</code> allow-list of the CSP.
       </div>
+      <div>
+        The failure is identical to what happened on the "report-only" page for
+        this same case:
+      </div>
+      <code
+        >Failed to execute 'createPolicy' on 'TrustedTypePolicyFactory': Policy
+        "DynamicWebpackCode" disallowed.</code
+      >
       <button id="load-code-with-policy-name-only">
         Load dynamic code, with only the policy defined in config (and the
         default behavior of stopping on policy-creation failure)
@@ -54,9 +64,10 @@
       <div>
         Finally, this last button has the new
         <code>onPolicyCreationFailure: "continue"</code>
-        option in the dynamic code's webpack config, and so it will output a
-        couple of warnings to the console and then work just like the first
-        button:
+        option in the dynamic code's webpack config. However, because we are in
+        strict mode, it will still fail in the exact same way as Case 1 fails
+        (with the only difference being a few more errors and warnings on the
+        console).
       </div>
       <button id="load-code-with-continue-on-policy-creation-failure">
         Load dynamic code, with a webpack config that allows continuation on
@@ -68,7 +79,7 @@
     <h3>Result:</h3>
     <div>
       Click one of the buttons above to see the result (and compare it with what
-      happens in the <a href="../strict-csp/">"strict-csp"</a> case).
+      happens in the <a href="../report-only-csp/">"report-only-csp"</a> case).
     </div>
     <div id="result"></div>
   </body>
